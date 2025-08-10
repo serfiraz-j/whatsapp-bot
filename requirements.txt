@@ -1,0 +1,31 @@
+fastapi
+uvicorn
+gunicorn
+sqlalchemy
+psycopg2-binary
+pydantic[email]
+python-dotenv
+loguru
+
+# FastAPI Users
+fastapi-users[sqlalchemy]
+fastapi-users-db-sqlalchemy
+
+# JWT
+python-jose[cryptography]
+passlib[bcrypt]
+
+# Celery & Redis
+celery
+redis
+
+# OpenAI
+openai
+
+# Vector Database
+pinecone-client
+langchain
+tiktoken
+
+# WhatsApp (Twilio)
+twilio
