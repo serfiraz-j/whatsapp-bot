@@ -56,6 +56,7 @@ Python, FastAPI ve modern teknolojilerle ölçeklenebilir, özelleştirilebilir 
 
 ## 📂 Proje Yapısı
 
+``` 
 app/
 ├── main.py
 ├── config.py
@@ -97,7 +98,7 @@ app/
 docker-compose.yml
 Dockerfile
 requirements.txt
-
+``` 
 
 ---
 
@@ -133,19 +134,32 @@ Bu işlem FastAPI uygulaması, PostgreSQL, Redis ve Celery worker’ını başla
 API Dokümantasyonuna eriş
 Tarayıcıdan http://localhost:8000/docs adresine git.
 
-🔍 Çalışma Mantığı
-1.Klinik Kaydı: Klinik sahibi hesap oluşturur.
 
-2.Konfigürasyon: Klinik bilgileri, hizmetler ve AI kişiliği ayarlanır.
+## 🔍 Çalışma Mantığı
 
-3.Belge Yükleme: Yüklenen belgeler (örn. SSS) parçalara ayrılır, embed edilir ve Pinecone’a kaydedilir.
+1. **Klinik Kaydı**  
+   Klinik sahibi bir hesap oluşturur.
 
-4.WhatsApp Mesajı: Müşteri, kliniğin WhatsApp numarasına mesaj gönderir.
+2. **Konfigürasyon**  
+   Klinik bilgileri, hizmetler ve AI kişiliği ayarlanır.
 
-5.Mesaj Alma: Twilio mesajı /whatsapp/webhook endpoint’ine iletir.
+3. **Belge Yükleme**  
+   Yüklenen belgeler (örn. SSS) parçalara ayrılır, embed edilir ve Pinecone’a kaydedilir.
 
-6.AI İşleme: Mesaj Celery kuyruğuna eklenir, Pinecone’dan ilgili bilgiler çekilir (RAG), prompt oluşturulur ve GPT-4’ten yanıt alınır.
+4. **WhatsApp Mesajı**  
+   Müşteri, kliniğin WhatsApp numarasına mesaj gönderir.
 
-7.Yanıt Gönderme: Üretilen yanıt Twilio API’si aracılığıyla müşteriye iletilir.
+5. **Mesaj Alma**  
+   Twilio mesajı `/whatsapp/webhook` endpoint’ine iletir.
 
-8.Kayıt: Tüm konuşma veritabanına kaydedilir.
+6. **AI İşleme**  
+   - Mesaj Celery kuyruğuna eklenir.  
+   - Pinecone’dan ilgili bilgiler çekilir (**RAG** yöntemi).  
+   - Dinamik prompt oluşturulur.  
+   - GPT-4’ten yanıt alınır.
+
+7. **Yanıt Gönderme**  
+   Üretilen yanıt, Twilio API’si aracılığıyla müşteriye iletilir.
+
+8. **Kayıt**  
+   Tüm konuşma veritabanına kaydedilir.
